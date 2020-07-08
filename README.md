@@ -35,9 +35,9 @@ Five Yellow taxi trip records datasets (> 2GB) were used for development and tes
 
 
 #### Outlier Detection Results
-Comparison of how well estimated price fits in raw and filtered (trip_distance outliers removed) trip data by using linear least squares method for estimating the unknown parameters (price) in a linear regression model.  
-There's a lot of outliers in raw data  (e.g. total_amount < 0, big values for very small trip_distance).  
-At first glance price model fits values pretty well, however pricing seems to be steeper after outlier values removal.
+Comparison of how well estimated price fits in raw and filtered (trip_distance outliers removed) trip data by using simple linear regression model for estimating the unknown parameters (price).
+There are outliers in raw data (e.g. total_amount < 0, high price for short trip_distance), but it seems like they don't have much impact on our model - outliers are not the majority.
+At first glance price model fits well, however pricing seems to be steeper after outlier values removal.  
 [Notebook](https://github.com/sysrob/nyc-trip-data-analysis/blob/master/notebooks/price_fit_raw_vs_filtered.ipynb)
 
 ![price_fit_raw_vs_filtered](https://github.com/sysrob/nyc-trip-data-analysis/blob/master/images/price_fit_raw_vs_filtered.PNG)
