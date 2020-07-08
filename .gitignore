@@ -1,0 +1,5 @@
+target/
+.idea/
+metastore_db/
+.metals/
+derby.log

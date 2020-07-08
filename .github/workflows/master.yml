@@ -1,0 +1,32 @@
+# Run both the unit tests and integration tests and measure the code coverage using scoverage which is added as plugin in project/plugins.sbt.
+# Check for predefined style violations defined in scalastyle-config.xml.
+
+name: master
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: tests
+      run: |
+        rm -rf metastore_db
+        sbt clean compile
+        sbt coverage test
+        rm -rf metastore_db
+        sbt coverage it:test
+        sbt coverageReport
+    - name: scalastyle
+      run: sbt scalastyle
